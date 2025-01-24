@@ -427,7 +427,15 @@ public class Interfaz extends javax.swing.JFrame {
         for(int i=0;i<jTabla.getRowCount();i++){
             int id = Integer.parseInt(jTabla.getValueAt(i,0).toString().split(". ")[0]);
             int cantidad = Integer.parseInt(jTabla.getValueAt(i,1).toString());
-            db.comprarProducto(id, cantidad);
+            db.setStock(id);
+            if(cantidad<=db.getStock()){
+                db.comprarProducto(id, cantidad);}
+            else{
+                JOptionPane.showMessageDialog(null,
+                "El producto "+jTabla.getValueAt(i,0).toString() + " no se pudo comprar debido a que el stock actual es de: " + db.getStock() + " y has intentado comprar "+jTabla.getValueAt(i,1).toString(),
+                "Lo sentimos la compra no ha podido realizarse",
+                JOptionPane.ERROR_MESSAGE);
+            }
         }
         limpiar();
         setTabla();
