@@ -398,7 +398,7 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTPestañas.getSelectedIndex() == ventanaAdmin && !admin) {
             jTPestañas.setSelectedIndex(lastSelectedIndex);
             JOptionPane.showMessageDialog(null,
-                "Esta pestaña está bloqueada.",
+                "Necesitas ser administrador para acceser a esta pestaña",
                 "Acceso Denegado",
                 JOptionPane.WARNING_MESSAGE);
         } else {
@@ -457,6 +457,12 @@ public class Interfaz extends javax.swing.JFrame {
         if(inicioSesion.esValida(inicioSesion.getContraseña())){
             jTPestañas.setEnabled(true);
             admin=inicioSesion.getAdmin(inicioSesion.getContraseña());
+        }
+        else{
+            JOptionPane.showMessageDialog(null,
+                "Contraseña incorrecta",
+                "Acceso Denegado",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBaccesoActionPerformed
     
